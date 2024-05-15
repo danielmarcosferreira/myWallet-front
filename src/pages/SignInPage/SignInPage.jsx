@@ -13,14 +13,14 @@ export default function SignInPage() {
     function login(e) {
         e.preventDefault()
         if (form.password.length > 4) {
-            navigate("/homePage")
+            navigate("/home")
         }
     }
 
     return (
         <ContainerPage>
             <h1>MyWalley</h1>
-            <Form>
+            <Form onSubmit={login}>
                 <input
                     placeholder="E-mail"
                     type="email"
@@ -37,7 +37,7 @@ export default function SignInPage() {
                     required />
                 <button type="submit">Enter</button>
             </Form>
-            <p>First time here? <LinkContainer to={"/signUpPage"}>SIGN - UP!</LinkContainer></p>
+            <p>First time here? <LinkContainer to={"/signUp"}>SIGN - UP!</LinkContainer></p>
         </ContainerPage>
     )
 }
