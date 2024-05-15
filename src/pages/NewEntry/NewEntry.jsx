@@ -1,63 +1,60 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SignInPage() {
-    const [form, setForm] = useState({ email: "", password: "" })
+export default function NewEntry() {
+    const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function login(e) {
+    function save(e) {
         e.preventDefault()
-        if (form.password.length > 4) {
-            navigate("/home")
-        }
+        navigate("/home")
     }
 
     return (
-        <ContainerPage>
-            <h1>MyWalley</h1>
-            <Form onSubmit={login}>
+        <EntryContainer>
+            <h1>New data entry</h1>
+            <Form onSubmit={save}>
                 <input
-                    placeholder="E-mail"
-                    type="email"
-                    name="email"
-                    value={form.email}
+                    placeholder="Price"
+                    type="number"
+                    name="price"
+                    step={"0.01"}
+                    value={form.price}
                     onChange={handleForm}
                     required />
                 <input
-                    placeholder="Password"
-                    type="password"
-                    name="password"
-                    value={form.password}
+                    placeholder="Description"
+                    type="text"
+                    name="description"
+                    value={form.description}
                     onChange={handleForm}
                     required />
-                <button type="submit">Enter</button>
+                <button type="submit">Save entry</button>
             </Form>
-            <p>First time here? <LinkContainer to={"/signUp"}>SIGN - UP!</LinkContainer></p>
-        </ContainerPage>
+        </EntryContainer>
     )
 }
 
-const ContainerPage = styled.div`
+const EntryContainer = styled.div`
     background-color: #8b12be;
     height: 100vh;
     font-family: "Raleway", sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     h1 {
         color: white;
-        font-family: "Saira Stencil One", sans-serif;
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
-    p {
-        color: white;
+        width: 100%;
+        font-size: 26px;
+        font-weight: 700;
+        margin: 15px;
+        text-align: start;
+        padding: 15px;
     }
 `
 
@@ -93,14 +90,5 @@ const Form = styled.form`
             border: 1px solid #69128e;
             transition: 0.25s all ease-out;
         }
-    }
-`
-
-const LinkContainer = styled(Link)`
-    color: white;
-    font-weight: 700;
-    &:hover {
-        color: black;
-        transition: 0.2s all ease-out;
     }
 `

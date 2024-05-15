@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx'
 import GlobalStyle from './styles/GlobalStyle.jsx'
 import SignUpPage from './pages/SignUpPage.jsx/SignUpPage.jsx'
 import HomePage from './pages/HomePage/HomePage.jsx'
+import NewEntry from './pages/NewEntry/NewEntry.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <HomePage />
+  },
+  {
+    path: "/newEntry",
+    element: <NewEntry />
   }
 ])
 

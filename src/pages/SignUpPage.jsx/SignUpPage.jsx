@@ -83,13 +83,14 @@ const Form = styled.form`
     input {
         width: 350px;
         height: 55px;
-        margin-bottom: 7px;
+        margin-bottom: 10px;
         border-radius: 5px;
         border: none;
         &::placeholder {
             color: black;
             font-size: 20px;
             font-weight: 400;
+            padding-left: 10px;
         }
     }
     button {
