@@ -46,7 +46,7 @@ table {
 }
 
 *{
-	font-family: Arial, Helvetica, sans-serif;
+  	font-family: "Raleway", sans-serif;
     box-sizing: border-box;
 }
 
