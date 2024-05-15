@@ -9,9 +9,9 @@ export default function Footer() {
         <FooterContainer>
             <div onClick={() => navigate("/newEntry")}>
                 <img src={plus}/>
-                <p>New data entry</p>
+                <p>New data input</p>
             </div>
-            <div onClick={() => navigate("/newExit")}>
+            <div onClick={() => navigate("/newOutput")}>
                 <img src={minus} />
                 <p>New data output</p>
             </div>

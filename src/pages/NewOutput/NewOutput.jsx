@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export default function NewEntry() {
+export default function NewOutput() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ export default function NewEntry() {
 
     return (
         <EntryContainer>
-            <h1>New data entry</h1>
+            <h1>New data output</h1>
             <Form onSubmit={save}>
                 <input
                     placeholder="Price"
@@ -34,7 +34,7 @@ export default function NewEntry() {
                     value={form.description}
                     onChange={handleForm}
                     required />
-                <button type="submit">Save entry</button>
+                <button type="submit">Save output</button>
             </Form>
         </EntryContainer>
     )
