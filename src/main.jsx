@@ -6,12 +6,17 @@ import App from './App.jsx'
 import SignInPage from './pages/SignInPage/SignInPage.jsx'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx'
 import GlobalStyle from './styles/GlobalStyle.jsx'
+import SignUpPage from './pages/SignUpPage.jsx/SignUpPage.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <SignInPage />,
     errorElement: <NotFoundPage />
+  },
+  {
+    path: "/signUpPage",
+    element: <SignUpPage />
   }
 ])
 

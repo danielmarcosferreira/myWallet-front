@@ -2,25 +2,34 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SignInPage() {
-    const [form, setForm] = useState({ email: "", password: "" })
+export default function SignUpPage() {
+    const [form, setForm] = useState({name: "", email: "", password: "", confirmPass: "" })
     const navigate = useNavigate()
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
+        console.log(form);
     }
 
-    function login(e) {
+    function register(e) {
         e.preventDefault()
-        if (form.password.length > 4) {
-            navigate("/homePage")
+
+        if (form.password === form.confirmPass) {
+            navigate("/")
         }
     }
 
     return (
         <ContainerPage>
             <h1>MyWalley</h1>
-            <Form>
+            <Form onSubmit={register}>
+                <input
+                    placeholder="Name"
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleForm}
+                    required />
                 <input
                     placeholder="E-mail"
                     type="email"
@@ -35,9 +44,16 @@ export default function SignInPage() {
                     value={form.password}
                     onChange={handleForm}
                     required />
-                <button type="submit">Enter</button>
+                <input
+                    placeholder="Confirm Password"
+                    type="password"
+                    name="confirmPass"
+                    value={form.confirmPass}
+                    onChange={handleForm}
+                    required />
+                <button type="submit">Register</button>
             </Form>
-            <p>First time here? <LinkContainer to={"/signUpPage"}>SIGN - UP!</LinkContainer></p>
+            <p>Already have an account? <LinkContainer to={"/"}>SIGN - IN!</LinkContainer></p>
         </ContainerPage>
     )
 }
