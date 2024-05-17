@@ -1,4 +1,5 @@
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
@@ -10,11 +11,25 @@ export default function SignInPage() {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function login(e) {
-        e.preventDefault()
-        if (form.password.length > 4) {
+    useEffect(() => {
+        if (localStorage.getItem("user")) {
             navigate("/home")
         }
+    }, [navigate])
+
+    function login(e) {
+        e.preventDefault()
+        const body = {
+            email: form.email,
+            password: form.password
+        }
+        axios.post(`http://localhost:5656/sign-in`, body)
+            .then((resp) => {
+                console.log(resp.data)
+                localStorage.setItem(`user`, JSON.stringify(resp.data))
+                navigate("/home")
+            })
+            .catch((err) => console.log(err.response.data))
     }
 
     return (

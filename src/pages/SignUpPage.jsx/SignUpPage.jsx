@@ -1,22 +1,33 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import axios from "axios"
 
 export default function SignUpPage() {
-    const [form, setForm] = useState({name: "", email: "", password: "", confirmPass: "" })
+    const [form, setForm] = useState({ name: "", email: "", password: "", confirmPass: "" })
     const navigate = useNavigate()
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
-        console.log(form);
     }
 
     function register(e) {
         e.preventDefault()
-
-        if (form.password === form.confirmPass) {
-            navigate("/")
+        const body = {
+            name: form.name,
+            email: form.email,
+            password: form.password,
+            confirmPass: form.confirmPass
         }
+
+        axios.post(`http://localhost:5656/sign-up`, body)
+            .then((resp) => {
+                console.log(resp.data)
+                localStorage.setItem(`user`, JSON.stringify(resp.data))
+                navigate("/")
+            })
+            .catch((err) =>alert(err.response.data))
+
     }
 
     return (

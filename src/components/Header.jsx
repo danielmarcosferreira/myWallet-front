@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom"
 
 export default function Header() {
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem("user"))
     return (
         <HeaderContainer>
-            <h1>Hello, Fulano!</h1>
-            <img src={logout} onClick={() => navigate("/")}/>
+            <h1>Hello, {user.name}!</h1>
+            <img src={logout} onClick={() => {
+                localStorage.clear()
+                navigate("/")}}/>
         </HeaderContainer>
     )
 }
