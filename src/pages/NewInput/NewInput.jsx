@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
+import { AuthContext } from "../../context/AuthProvider"
 
 export default function NewEntry() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
+    const { token } = useContext(AuthContext)
     const user = JSON.parse(localStorage.getItem("user"))
 
     function handleForm(e) {
@@ -14,15 +16,10 @@ export default function NewEntry() {
 
     function save(e) {
         e.preventDefault()
-        // const body = {
-        //     type: "plus",
-        //     email: user.email,
-        //     price: form.price,
-        //     description: form.description
-        // }
+        console.log(token);
         const config = {
             headers: {
-                "Authorization":`Bearer ${token}`
+                "Authorization": `Bearer ${token}`
             }
         }
         const body = {
@@ -35,7 +32,7 @@ export default function NewEntry() {
                 console.log(resp)
                 navigate("/")
             })
-            .catch((err) => alert(err.response.data))
+            .catch((err) => console.log(err.response))
     }
 
     return (
