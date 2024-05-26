@@ -14,13 +14,23 @@ export default function NewEntry() {
 
     function save(e) {
         e.preventDefault()
+        // const body = {
+        //     type: "plus",
+        //     email: user.email,
+        //     price: form.price,
+        //     description: form.description
+        // }
+        const config = {
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }
         const body = {
-            email: user.email,
             price: form.price,
             description: form.description
         }
 
-        axios.post(`http://localhost:5656/newData`, body)
+        axios.post(`http://localhost:5656/newData`, body, config)
             .then((resp) => {
                 console.log(resp)
                 navigate("/")

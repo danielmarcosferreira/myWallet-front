@@ -1,8 +1,24 @@
 import styled from "styled-components"
+import axios from "axios"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { useEffect } from "react"
 
 export default function HomePage() {
+    const user = JSON.parse(localStorage.getItem("user"))
+    let datas = []
+
+    useEffect(() => {
+        axios.get(`http://localhost:5656/newData`, user.email)
+        .then(resp => {
+            datas = [...datas, resp.data]
+            console.log(resp.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
+
     return (
         <ContainerPage>
             <Header />

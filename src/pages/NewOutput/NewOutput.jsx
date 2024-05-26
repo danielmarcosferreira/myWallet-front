@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import axios from "axios"
 
 export default function NewOutput() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem("user"))
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -12,7 +14,19 @@ export default function NewOutput() {
 
     function save(e) {
         e.preventDefault()
-        navigate("/home")
+        const body = {
+            type: "minus",
+            email: user.email,
+            price: form.price,
+            description: form.description
+        }
+
+        axios.post(`http://localhost:5656/newData`, body)
+            .then((resp) => {
+                console.log(resp)
+                navigate("/")
+            })
+            .catch((err) => alert(err.response.data))
     }
 
     return (
