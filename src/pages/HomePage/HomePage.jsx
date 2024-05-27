@@ -6,9 +6,8 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/AuthProvider"
 
 export default function HomePage() {
-    const { token } = useContext(AuthContext)
+    const { token, finalValue, setFinalValue } = useContext(AuthContext)
     const [dataBase, setDataBase] = useState([])
-    const [finalValue, setFinalValue] = useState("")
 
     useEffect(() => {
         if (token) {
@@ -28,7 +27,7 @@ export default function HomePage() {
                 console.log(err)
             })
         }
-    }, [token, finalValue])
+    }, [token, finalValue, dataBase])
 
 
     return (
@@ -37,18 +36,22 @@ export default function HomePage() {
             <RegisterStyle>
                 <div>
                     {dataBase.length === 0 ? (
-                    <span>There are no entry and exit records</span>
-                ) : (
-                    dataBase.map((item, index) => (
-                        <DataComponentStyle color={item.type === "plus" ? "green" : "red"} key={index}>
-                            <div>
-                                <p>{item.date}</p>
-                                <p>{item.description}</p>
-                            </div>
-                            
-                            <p>{item.price}</p>
-                        </DataComponentStyle>
-                    )))}
+                        <span>There are no entry and exit records</span>
+                    ) : (
+                        dataBase.map((item, index) => (
+                            <DataComponentStyle color={item.type === "plus" ? "green" : "red"} key={index}>
+                                <div>
+                                    <p>{item.date}</p>
+                                    <p>{item.description}</p>
+                                </div>
+
+                                <div>
+                                    <p>{item.price}</p>
+                                    <p>x</p>
+                                </div>
+
+                            </DataComponentStyle>
+                        )))}
                 </div>
                 {dataBase.length === 0 ? "" : (
                     <FooterDataComponentStyle color={finalValue >= 0 ? "green" : "red"}>
@@ -56,7 +59,7 @@ export default function HomePage() {
                         <p>{finalValue}</p>
                     </FooterDataComponentStyle>
                 )}
-                
+
             </RegisterStyle>
             <Footer />
         </ContainerPage>
@@ -106,6 +109,10 @@ const DataComponentStyle = styled.div`
     div {
         display: flex;
         p {
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 20px;
             &:nth-child(1) {
             color: #868686;
             }
@@ -115,12 +122,8 @@ const DataComponentStyle = styled.div`
             }
         }
     }
-    p {
-        font-size: 18px;
-        font-weight: 400;
-        text-align: center;
-        margin-top: 20px;
-        &:nth-child(2) {
+    div:nth-child(2) > p {
+        &:nth-child(1) {
             color: ${props => props.color};
         }
     }
