@@ -51,7 +51,7 @@ export default function HomePage() {
                     )))}
                 </div>
                 {dataBase.length === 0 ? "" : (
-                    <FooterDataComponentStyle color={finalValue > 0 ? "green" : "red"}>
+                    <FooterDataComponentStyle color={finalValue >= 0 ? "green" : "red"}>
                         <p>SALDO</p>
                         <p>{finalValue}</p>
                     </FooterDataComponentStyle>
