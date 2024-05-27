@@ -1,14 +1,13 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
+import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthProvider"
 
 export default function NewOutput() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
     const { token } = useContext(AuthContext)
-    const user = JSON.parse(localStorage.getItem("user"))
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -16,7 +15,6 @@ export default function NewOutput() {
 
     function save(e) {
         e.preventDefault()
-        console.log(token);
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -29,7 +27,6 @@ export default function NewOutput() {
 
         axios.post(`http://localhost:5656/newOutput`, body, config)
             .then((resp) => {
-                console.log(resp)
                 navigate("/")
             })
             .catch((err) => console.log(err.response))

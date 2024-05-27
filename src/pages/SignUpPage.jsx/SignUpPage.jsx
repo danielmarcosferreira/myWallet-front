@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function SignUpPage() {
     const [form, setForm] = useState({ name: "", email: "", password: "", confirmPass: "" })
@@ -22,12 +22,9 @@ export default function SignUpPage() {
 
         axios.post(`http://localhost:5656/sign-up`, body)
             .then((resp) => {
-                console.log(resp.data)
-                localStorage.setItem(`user`, JSON.stringify(resp.data))
                 navigate("/")
             })
-            .catch((err) =>alert(err.response.data))
-
+            .catch((err) => alert(err.response.data))
     }
 
     return (

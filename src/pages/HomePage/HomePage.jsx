@@ -9,7 +9,6 @@ export default function HomePage() {
     const { token } = useContext(AuthContext)
     const [dataBase, setDataBase] = useState([])
     const [finalValue, setFinalValue] = useState("")
-    const user = JSON.parse(localStorage.getItem("user"))
 
     useEffect(() => {
         if (token) {
@@ -24,7 +23,6 @@ export default function HomePage() {
                 setDataBase(resp.data)
                 allData.map((item) => (values = Number(values) + Number(item.price)))
                 setFinalValue(values)
-                console.log(finalValue)
             })
             promise.catch(err => {
                 console.log(err)

@@ -1,12 +1,12 @@
 import axios from "axios"
+import styled from "styled-components"
 import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import styled from "styled-components"
 import { AuthContext } from "../../context/AuthProvider"
 
 export default function SignInPage() {
     const [form, setForm] = useState({ email: "", password: "" })
-    const { setToken, token } = useContext(AuthContext)
+    const { setToken } = useContext(AuthContext)
     const navigate = useNavigate()
 
     function handleForm(e) {
@@ -27,7 +27,6 @@ export default function SignInPage() {
         }
         axios.post(`http://localhost:5656/sign-in`, body)
             .then((resp) => {
-                console.log(resp)
                 localStorage.setItem(`user`, JSON.stringify(resp.data))
                 const newToken = resp.data.token
                 setToken(newToken)
