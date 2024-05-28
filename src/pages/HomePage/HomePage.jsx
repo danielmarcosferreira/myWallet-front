@@ -29,6 +29,11 @@ export default function HomePage() {
         }
     }, [token, finalValue, dataBase])
 
+    function deleteTask(id) {
+        axios.delete(`http://localhost:5656/my-data/${id}`)
+            .then(() => console.log("Deleted Successfully"))
+            .catch((err) => console.log(err))
+    }
 
     return (
         <ContainerPage>
@@ -47,7 +52,7 @@ export default function HomePage() {
 
                                 <div>
                                     <p>{item.price}</p>
-                                    <p>x</p>
+                                    <p onClick={() => deleteTask(item._id)}>x</p>
                                 </div>
 
                             </DataComponentStyle>
