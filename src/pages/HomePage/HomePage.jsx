@@ -29,7 +29,7 @@ export default function HomePage() {
         }
     }, [token, finalValue, dataBase])
 
-    function deleteTask(id) {
+    function deleteItem(id) {
         axios.delete(`http://localhost:5656/my-data/${id}`)
             .then(() => console.log("Deleted Successfully"))
             .catch((err) => console.log(err))
