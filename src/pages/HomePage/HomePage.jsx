@@ -107,6 +107,8 @@ const RegisterStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: auto;
+    position: relative;
     span {
         position: relative;
         top: 500%;
@@ -152,10 +154,16 @@ const DataComponentStyle = styled.div`
 `
 
 const FooterDataComponentStyle = styled.div`
-    position: relative;
-    bottom: 0;
+    background-color: white;
+    width: 100%;
+    padding-right: 20px;
+    border-top: 1px solid darkgray;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    margin-top: 10px;
     p {
         padding: 10px;
         &:nth-child(1) {

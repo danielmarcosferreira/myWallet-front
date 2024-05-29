@@ -24,7 +24,14 @@ export default function SignUpPage() {
             .then((resp) => {
                 navigate("/")
             })
-            .catch((err) => alert(err.response.data))
+            .catch((err) => {
+                if (err.response.data.message) {
+                    alert(err.response.data.message)
+                } else {
+                    alert(err.response.data)
+                }
+                
+            })
     }
 
     return (
