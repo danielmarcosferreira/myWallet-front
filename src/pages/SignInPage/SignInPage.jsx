@@ -32,7 +32,13 @@ export default function SignInPage() {
                 setToken(newToken)
                 navigate("/home")
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                if (err.response.data.message) {
+                    alert(err.response.data.message)
+                } else {
+                    alert(err.response.data)
+                }
+            })
     }
 
     return (

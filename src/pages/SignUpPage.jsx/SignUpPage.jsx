@@ -30,7 +30,6 @@ export default function SignUpPage() {
                 } else {
                     alert(err.response.data)
                 }
-                
             })
     }
 
