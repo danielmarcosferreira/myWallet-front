@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage/HomePage.jsx'
 import NewEntry from './pages/NewInput/NewInput.jsx'
 import NewOutput from './pages/NewOutput/NewOutput.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
+import EditInputPage from './pages/EditInputPage/EditInputPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/newOutput",
     element: <NewOutput />
+  },
+  {
+    path: "/editInput",
+    element: <EditInputPage />
   }
 ])
 
@@ -38,7 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <GlobalStyle />
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
 )

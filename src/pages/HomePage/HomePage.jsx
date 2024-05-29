@@ -4,10 +4,12 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/AuthProvider"
+import { useNavigate } from "react-router-dom"
 
 export default function HomePage() {
     const { token, finalValue, setFinalValue } = useContext(AuthContext)
     const [dataBase, setDataBase] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (token) {
@@ -35,6 +37,12 @@ export default function HomePage() {
             .catch((err) => console.log(err))
     }
 
+    function changePage(item) {
+        navigate("/editInput", {
+            state: { item }
+        })
+    }
+
     return (
         <ContainerPage>
             <Header />
@@ -44,15 +52,18 @@ export default function HomePage() {
                         <span>There are no entry and exit records</span>
                     ) : (
                         dataBase.map((item, index) => (
-                            <DataComponentStyle color={item.type === "plus" ? "green" : "red"} key={index}>
+                            <DataComponentStyle
+                                color={item.type === "plus" ? "green" : "red"}
+                                key={index}>
+
                                 <div>
                                     <p>{item.date}</p>
-                                    <p>{item.description}</p>
+                                    <p onClick={() => changePage(item)}>{item.description}</p>
                                 </div>
 
                                 <div>
                                     <p>{item.price}</p>
-                                    <p onClick={() => deleteTask(item._id)}>x</p>
+                                    <p onClick={() => deleteItem(item._id)}>x</p>
                                 </div>
 
                             </DataComponentStyle>
