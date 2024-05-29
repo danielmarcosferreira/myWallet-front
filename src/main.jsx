@@ -10,6 +10,7 @@ import NewEntry from './pages/NewInput/NewInput.jsx'
 import NewOutput from './pages/NewOutput/NewOutput.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
 import EditInputPage from './pages/EditInputPage/EditInputPage.jsx'
+import EditOutputPage from './pages/EditOutputPage/EditOutputPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/editInput",
     element: <EditInputPage />
+  },
+  {
+    path: "/editOutput",
+    element: <EditOutputPage />
   }
 ])
 

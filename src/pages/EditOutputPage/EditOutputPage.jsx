@@ -3,7 +3,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 
-export default function EditInputPage() {
+export default function EditOutputPage() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
     const location = useLocation()
@@ -16,7 +16,7 @@ export default function EditInputPage() {
     function save(e) {
         e.preventDefault()
         const body = {
-            price: form.price,
+            price: `-${form.price}`,
             description: form.description
         }
 
@@ -29,7 +29,7 @@ export default function EditInputPage() {
 
     return (
         <EntryContainer>
-            <h1>Edit Input</h1>
+            <h1>Edit Output</h1>
             <Form onSubmit={save}>
                 <input
                     placeholder="Price"
@@ -46,7 +46,7 @@ export default function EditInputPage() {
                     value={form.description}
                     onChange={handleForm}
                     required />
-                <button type="submit">Update Input</button>
+                <button type="submit">Update Output</button>
             </Form>
         </EntryContainer>
     )

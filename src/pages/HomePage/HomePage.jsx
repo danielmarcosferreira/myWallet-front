@@ -38,9 +38,15 @@ export default function HomePage() {
     }
 
     function changePage(item) {
-        navigate("/editInput", {
-            state: { item }
-        })
+        if (item.type === "plus") {
+            navigate("/editInput", {
+                state: { item }
+            })
+        } else {
+            navigate("/editOutput", {
+                state: { item }
+            })
+        }
     }
 
     return (
