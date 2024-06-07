@@ -22,7 +22,8 @@ export default function NewEntry() {
         }
         const body = {
             price: form.price,
-            description: form.description
+            description: form.description,
+            signal: "plus"
         }
 
         axios.post(`http://localhost:5656/newData`, body, config)

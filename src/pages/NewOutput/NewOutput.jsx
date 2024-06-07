@@ -22,10 +22,11 @@ export default function NewOutput() {
         }
         const body = {
             price: form.price,
-            description: form.description
+            description: form.description,
+            signal: "minus"
         }
 
-        axios.post(`http://localhost:5656/newOutput`, body, config)
+        axios.post(`http://localhost:5656/newData`, body, config)
             .then((resp) => {
                 navigate("/")
             })

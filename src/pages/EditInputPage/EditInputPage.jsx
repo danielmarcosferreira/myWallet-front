@@ -1,12 +1,14 @@
 import styled from "styled-components"
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../context/AuthProvider"
 
 export default function EditInputPage() {
     const [form, setForm] = useState({ price: "", description: "" })
     const navigate = useNavigate()
     const location = useLocation()
+    const {token} = useContext(AuthContext)
     const { item } = location.state || {}
 
     function handleForm(e) {
@@ -20,7 +22,11 @@ export default function EditInputPage() {
             description: form.description
         }
 
-        axios.put(`http://localhost:5656/my-data/${item._id}`, body)
+        axios.put(`http://localhost:5656/my-data/${item._id}`, body, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then((resp) => {
                 navigate("/")
             })

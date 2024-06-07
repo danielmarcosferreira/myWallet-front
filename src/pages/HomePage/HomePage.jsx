@@ -32,9 +32,14 @@ export default function HomePage() {
     }, [token, finalValue, dataBase])
 
     function deleteItem(id) {
-        axios.delete(`http://localhost:5656/my-data/${id}`)
+        axios.delete(`http://localhost:5656/my-data/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        )
             .then(() => console.log("Deleted Successfully"))
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(`Entrou aqui ${err}`))
     }
 
     function changePage(item) {
